@@ -1,0 +1,715 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>probabilistic preliminaries</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="about.html">state of play</a></li><li class="chapter-item expanded affix "><a href="intro.html" class="active">probabilistic preliminaries</a></li><li class="chapter-item expanded affix "><li class="part-title">coins</li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="probabilistic-preliminaries"><a class="header" href="#probabilistic-preliminaries">Probabilistic Preliminaries</a></h1>
+<p>Musings. Questions. Answers? The obligatory introduction to all things and none.</p>
+<blockquote>
+<p>&quot;Once is happenstance. Twice is coincidence. The third time it's enemy action.&quot;<br>
+-- Auric Goldfinger</p>
+</blockquote>
+<h2 id="the-bits-of-uncertainty"><a class="header" href="#the-bits-of-uncertainty">The Bits of Uncertainty</a></h2>
+<h4 id="on-disasters"><a class="header" href="#on-disasters">On Disasters</a></h4>
+<p>Imagine a nuclear scientist, maybe one that specifically works in the exciting world of uranium enrichment. You see, he's not <em>really</em> supposed to be doing it, but his government...
+insists. Ignore the possibility that this is all technically going on under a
+cloud of deception, in a setting of geopolitical uncertainty. Besides, betrayal of his government could result in job loss, possible prison, maybe death. This
+seems unlikely. He is doing his work. And they also seemed to be running out of nuclear
+scientists.</p>
+<p>It seems to him that equally zealous assassins, who are somewhat more than likely to be Israelis, are likely to kill him first.
+In 2014, a few years after this caricature of events transpired, the homicide rate in his country
+would have been 2.47 per 10000. But he is not just a citizen of his country. He
+is a citizen who happens to be a nuclear scientist working on a secretive
+enrichment project in a country that routinely makes the nightly geopolitical news. He happens to live in a country where four nuclear scientists have been killed by rather public and spectacular means.</p>
+<p>Still, he has no choice. So he goes into his office located underground in the middle of the desert like it's
+any normal day in Allah's paradise. What are the chances anyone else knows about this
+place? He walks up to his engineering station, connected to some airgapped network. In network security, an airgapped network is one that is physically or logically segmented
+from unsecured networks, chiefly the Internet. It is to
+reduce the chances of an adversary gaining access to a secured or protected network. In extreme scenarios, the only way to access the internal network is physically.</p>
+<p>He sticks his USB nonchalantly into his station. He does not consider the chance that the USB is no longer innocuous. In normal circumstances, his assumption could be warranted. But these are not normal circumstances. The question is: how does him being a nuclear scientist, living and working in a country of geopolitical importance where such people seem to be targeted, alter the
+chances of that USB stick being infected?</p>
+<p>He doesn't think about it. He does whatever work he does, then leaves. Monday morning meeting maybe. Some time later, a spate of centrifuges need to be replaced. This is routine. Nothing lasts forever. There's now some
+worry that there may be something wrong with the centrifuges they bought, that they may be malfunctioning at a rate too quick to be normal. Ah well,
+never trust shady black market dealers, he thinks to himself. There's probably just something wrong with the centrifuges. Replace them, move on. Meanwhile, the computers looks normal, the system appears to be humming along.</p>
+<p>But as it happens, centrifuges continue to malfunction. Are there any suspicions yet that this is all programmed death, that some deliberate hand is the cause of centrifugal self-destruction? If there are, it is not apparent. And as our nuclear scientist
+and his colleagues search for this reason, this cause, the computer all the while states
+that all systems look normal.</p>
+<p>Nuclear facilities are thought to be the some of the most secure places on Earth.
+After all, neglect could be catastrophic. Right? What are the chances this is all an accident? How high are the chances that any one
+part of this system fails? Even more terrifying, what are the chances it is <em>not</em> all just some accident?
+Is it possible that malicious intent and action are the cause? How safe is <em>anything</em>?</p>
+<p>It turns out, it wasn't so much the hand of God causing centrifuges to self-destruct,
+but rather the Hand of God.</p>
+<p>Now, I may have embellished some events and simplified others, but the plot of
+the story is familiar to us by now: a malicious software (malware), Stuxnet, was implanted
+in an airgapped and supposedly secret Iranian uranium enrichment facility. Once inside,
+it began demolishing centrifuges all while deceptively making it look like the systems
+were functioning as they normally should.</p>
+<p>The story of Stuxnet is one I read many years ago. And it is one I keep coming back
+to, revisiting the story with a different perspective each time. Stuxnet is a story that involves some of my favorite words: deception, subterfuge, sabotage, intrigue, conspiracy, espionage. Sure, none of those words really have a positive intention. But what about <em>possibility</em>? When I first read about it as
+a cyberscrub, the possibility of the attack and its novelty were what stood out most to
+me. <em>Is this even possible?</em> I would think to myself. Turns out, it is.</p>
+<blockquote>
+<p><strong>Note</strong>: Stuxnet is also a great example of playing the long run. The deception
+involved to deceive others in what was already a deceptive operation is zany to say the least.
+There's been debate over how effective Stuxnet was; the numbers are an estimated 1000
+centrifuges destroyed. Here's the thing: It's entirely probable that as a deception
+operation it was a complete success. They destroyed enough centrifuges to delay
+the adversary, but not so many that they tipped their hand.</p>
+</blockquote>
+<p>After some time spent in the cybersecurity industry, I have come to the realization:
+These attacks are not only possible, they are probable, and they are already happening.
+And the way we (those in the cybersecurity industry) think about cybersecurity problems
+in general is conceptually flawed. Actually, the way we (including I) think about
+probability is flawed.</p>
+<h4 id="computers-and-probabilities"><a class="header" href="#computers-and-probabilities">Computers and Probabilities</a></h4>
+<p>If spam algorithms work so well, why is phishing still predominant?</p>
+<p>Are data breaches getting worse? If so, why haven't these hacks caused more
+detrimental damage? How do we know if some network traffic is just the background noise of the Internet or
+a targeted incursion attempt? If a large company tells you your and other customers'
+data is &quot;secure&quot;, how can you tell?</p>
+<p>Should hacked companies share information about the nature of breaches or is the philosophy
+of &quot;security by obscurity&quot; a better approach? How do (or should) cyber-insurance companies make
+their estimations?</p>
+<p>If there is any field or subfield that ought to teach uncertainty and risk more, but doesn't
+seem to often enough, it's cybersecurity. Yet, it is also an industry where communicating risks is paramount. Now, I am unwilling to turn this into a
+discussion about the merits of the cybersecurity industry (that is not the point).
+Cybersecurity folks like to say: &quot;It's not a question of <em>if</em> you'll get hacked,
+but <em>when</em>.&quot; In
+the world of hacks, of &quot;dumb&quot; computers, things always seem to take on the guise of
+certainty. Surely if a company has been breached, there is a reason for it somewhere.
+Phishing? A worm? SQL injection?</p>
+<p>And this is true (the advent of artificially-intelligent systems notwithstanding). It
+is also true that knowing about a potential vulnerability is also important (especially
+if you want it patched!). But how likely is an SQL injection attack? How likely is it
+to succeed? And what would be the cost of a successful breach? What about Microsoft Windows? Is it insecure because of the incompetence of its software
+engineers? Or is its insecurity inevitable given the number of lines of source code? Is it any
+more or less safe than, say, Linux? And if it is, does its prevalence account for
+perceptions surrounding its insecurity?</p>
+<p>By the way, if there is one field that seems to be the praise of our times but is also the source
+of so many anxieties of the future, it's artificial intelligence. One successful, smart
+person says: &quot;Skynet.&quot; Another equally successful, equally smart person responds with
+utmost certainty: AI will be the cause of paradise. One person thinking of the singularity may admonish us: &quot;It will be the destruction of humanity,&quot; and the other replies, &quot;No, its ascendance.&quot; Which is it? Can it not be both? And is there <em>any</em> way
+we can predict it?</p>
+<blockquote>
+<p><strong>Note</strong>: Humanity's &quot;ascendance&quot; may just as well coincide with its destruction.</p>
+</blockquote>
+<h4 id="cyber-attribution-and-other-questions"><a class="header" href="#cyber-attribution-and-other-questions">Cyber Attribution and Other Questions</a></h4>
+<p>Properly identifying an adversary in a cyber attack (known as attribution in cyberspeak)
+is considered an &quot;open problem&quot; in cybersecurity. Actually, for many security pros,
+attribution is often the least of their worries. Discovering compromise by SQL injection (a common enough vulnerability, at least ten years ago) is concerning only as far
+as realizing what an attacker's entrypoint is and fixing it.</p>
+<p>But when attribution eventually enters the picture, you can hear some pros lament:
+&quot;Well, it might not be possible with 100% certainty to identify the attacker.&quot; This is
+a dangerous mentality. True, it may not be possible to identify the exact individual
+or individuals every single time. But it always possible to narrow the list of suspects.
+At the very least, you can come up with some sort of probabilistic assessment.</p>
+<p>Take the Stuxnet example. Forget numbers and data for a moment. Given what you know of the event, the year and environment in which the attack to place, the amount of time involved
+(the malware was first discovered in 2010 and may have been around as early as 2005),
+its target, who do you think is more likely to be the perpetrator? I'll help you: is it likely the stereotypical hooded teenage hacker in
+his mother's proverbial basement, a sophisticated cybercrime group, or a nation-state?</p>
+<p>It's probably least likely to be an individual, more likely to be a sophisticated
+cybercrime group, and most likely to be a nation-state. Can we rule the individual out
+completely? Of course not, but based on information we have, we can assign a lower
+probability to this outcome.</p>
+<p>It is true that often the problem of attribution isn't so much identifying the attacker,
+but what do once that attribution has been made. In geopolitical schemes, the stakes
+are generally higher, and these things naturally become political. But what if you're
+a mid-sized company? How likely are you to get attacked by a nation-state? A sophisticated cybercrime group? How likely is it for your organization to fall victim to ransomware,
+and what are the chances that such an event forces you to close up shop? What is the
+average cost of a breach? Do these costs vary tremendously among companies? What about among industries? Do higher cybersecurity budgets mean better security? They say
+security should be built-in to applications, that it should be part of the mentality of
+development. Does this make a difference? Are the more &quot;prepared&quot; companies less
+likely to be attacked? Are they less likely to be shuttered as a result of an attack? Or
+is it like preparing for a car crash?</p>
+<p>It need not be said that these questions are important not just for the livelihood
+of individuals and individual organizations, but entire groups of industries.
+Cybersecurity pros tend to be unforgiving and unsubtle. They see one minor vulnerability and chalk
+it up to programmer idiocy. They recommend defensive measures that they are not sure even work and may not even be relevant! On the other side, the programmer lives in a world where being the
+first to market is more important (in terms of the bottom line) than an application
+or system's security.</p>
+<p>You can't just tell a small-sized company, mom and pop, whomever, to fork over a
+budget they don't have to a problem that might not even be relevant. But how do you
+know what is likely to work or not? This is the realm of probabilities, of statistics,
+of risks and reward.</p>
+<h2 id="the-idea"><a class="header" href="#the-idea">The Idea</a></h2>
+<p>But this blog isn't really just about cybersecurity. It's about uncertainty.</p>
+<p>It's about asking questions. Most probabilistic (and, by extension, statistical)
+problems begin in a specific place and time. Sure, you can muck through data trying
+to find those questions. But most of the time we go through the data only if there
+is a question we want answered. Data and numbers don't (and probably can't) answer every question. But we must start somewhere.</p>
+<p>I am using this project to hopefully build from basic probability theory to
+statistical inferences and basic predictive models (statistical and machine learning). At the same time I am going to utilize expectation (that is, expected value) as a method of evaluating decisions. In no way do I pretend to think that this is the
+only way to make decisions, but I feel it is one that many people never or seldom do (myself included).</p>
+<blockquote>
+<p><strong>Note</strong>: While I have in mind what this whole thing will look like, I am
+uncertain as to what the full scope will be. It is entirely possible it is never
+finished. It is also entirely possible for it to be broken into multiple packages.</p>
+</blockquote>
+<p>To quote Marvin Minsky, from <a href="https://www.amazon.com/Society-Mind-Marvin-Minsky/dp/0671657135/"><em>The Society of Mind</em></a>:
+&gt;&quot;There's nothing very technical in this book. It, too, is a society - of many
+small ideas. Each by itself is only common sense, yet when we join enough of <em>them</em>
+we can explain the strangest mysteries of mind.&quot;</p>
+<p>I do not pretend to be as ambitious, but the intention is similar.</p>
+<h2 id="an-example-of-what-instigated-this-blog"><a class="header" href="#an-example-of-what-instigated-this-blog">An Example of What Instigated this &quot;Blog&quot;</a></h2>
+<p>Lately, discussions with friends and roommates turn constantly to the nature of predictability.
+Partly this is my fault: it has become an obsession of mine.
+In one recent talk with a good friend of mine about predictive models, the questions
+turned to sports betting. I am
+not 100% certain how the discussion weaved its course exactly but, at some point,
+it turned to the NFL, and the infamous 2015 Super Bowl.</p>
+<p>Now, in the full interests of disclosure, I did <em>not</em> watch the game. In
+actuality, I have only watched football a handful of times (and, incidentally, mostly only at Super Bowl parties). I had heard of the game, of course. But in case I did
+not remember (which I did not), my friend proceeded to give me a play-by-play of that
+infamous play: Seattle's decision to pass.</p>
+<p>I knew enough about football to understand the play. I did not know enough to understand
+if the decision was truly the wrong one. I had no reason to doubt my friend's analysis
+(although perhaps I should have questioned whether he knew more than Pete Carroll). No, the thing that bothered me was that my friend was convinced it was absolutely the wrong play. Furthermore, that judgment was based on the <em>result</em>, not the <em>reasons for the decision</em> (indeed, it seems that the call <a href="https://fivethirtyeight.com/features/a-head-coach-botched-the-end-of-the-super-bowl-and-it-wasnt-pete-carroll/">may not have been as bad as my friend thinks</a>). But the part of the
+discussion that bothered me the most was not that I did not know about football. No, the part that bothered me the most is that despite what I thought I knew, I had no idea
+how to even begin evaluating the decision (namely, the predictability of its outcome). I could resort to only the ineffectual: &quot;Well, we can't just evaluate based purely on results.&quot; I had no idea how to express evaluations involving uncertainty and risk.</p>
+<h2 id="flushed-down-the-river"><a class="header" href="#flushed-down-the-river">Flushed Down the River</a></h2>
+<p>Imagine a wacky poker home game between friends. There is no actual money involved. But there are drinks, there is pride, there are bragging rights. The &quot;dealer&quot; (the last player to act) shoves pocket kings (KK, a premium hand) pre-flop (to the uninitiated, this basically means that the player put all of his money into the pot based on his starting hand). Player 1 makes a sighing call. Player 2 naturally follows. And Player 3, now guessing he has the right odds, also calls. Nobody is truly sober (in actuality, I believe that the only person who opted <em>not</em> to participate was hilariously the only one who was sober, and stated, &quot;This is insane,&quot; but only as if to imply he wasn't surprised at all as to what was happening). Excitement is in the air: 4 people are effectively all-in before any additional cards have been dealt! When the river card (the last face-up card) is finally bared, Player 3 is left with the best
+hand (and roughly 4 times what he had put in to the pot). Players 1 and 2 and the dealer, with the KK,
+bust out.</p>
+<p>Now I ask you, without even knowing the technicals in the hand, to make a &quot;naive&quot;
+judgment: was the KK shove a good or bad decision? Some of you might be thinking there was a better play than simply going all-in. Some (maybe even most) of you might also think, &quot;Well, KK lost,&quot; so, bad decision. There is nothing wrong with thinking this way: results do matter. But the result was not known before the river. What if I told you that between <strong>4 players</strong> KK had a nearly 40% chance of winning?</p>
+<blockquote>
+<p>&quot;Chess is not a game. Chess is a well-defined form of computation. You may not be able to work out the answers, but in theory, there must be a solution, a right procedure in any position. Now real games... are not like that at all. Real life is not like that. Real life consists of bluffing, of little tactics of deception, of asking yourself what is the other man going to think I mean to do. And that is what games are about in my theory.&quot;
+<br>-- John von Neumann (taken from William Poundstone's <em>Prisoner's Dilemma</em>)</p>
+</blockquote>
+<p>There is nothing fundamentally or inherently wrong with judging results. Our
+entire society is seemingly based on results! We have test scores (standardized or not) that determine intelligence (and college admittance). Salaries and job titles are often associated with success. Sports teams and athletes and gamers are judged by their wins.
+It is true that many of these successful people get to where they are with hard work
+and persistence (and certainly there are vocations where skill plays a huge role). But we also cannot discount the fact that there are other forces,
+including luck, that contribute to (and, in some cases, are the reasons for) the results. Furthermore, strange and funny things happen when we begin to equate luck
+(or randomness) with skill!</p>
+<p>Poker is a rather apt illustration; a microcosm of life. It is a game of imperfect information, of deception
+and bluffing. It is a game that involves not just probability, but statistical inference (if a <em>skilled</em> player calls your preflop raise, what can you determine about his hand?), of being required to understand expectation (pot odds and true odds). It is a game where swings are common and bankroll management is crucial (like other games of chance). It is a game that forces
+players to make the best decisions they can under uncertain conditions, a game where
+the outcome of the &quot;experiment&quot; is unknown (at least, until the river, and even then bluffing is certainly still an option). That uncertainty does not just include
+that unknown outcome, but the decisions of other players. Think of it this way: you could know your opponent's hand, but you still would not know with certainty what their decision will be. Will they call your bluff?</p>
+<p>It is a game where the best players strive to maximize their return by making the best decisions (a good way to think about the game is as a series of investment decisions). Chance plays a significant role. But unlike most &quot;games of chance&quot;, there
+is room for skill. A good player knows that they can make money with pocket aces (AA). But better players doggedly seek to maximize the profits they earn from that hand. Skilled
+players also know when they should fold a loser. A good player knows above all they must
+constantly reevaluate the situation based on new information.</p>
+<p>The study of poker also informs the advances we have made since the days of the road gambler, across a myriad of different fields; some of these fields have had some rather profound affects on society. Artificially-intelligent poker &quot;players&quot; now beat professionals heads-up. Game theory has led to a unique class of software, known as &quot;solvers&quot;,
+which have become integral study tools.</p>
+<p>The one thing to emphasize again is that in poker, as in life, there is no guarantee. We
+have to make the best decisions under conditions where we do not have all the information, where the outcome is an unknown quantity, and where other players actively strive to outdo us. And as in life, it is
+useful to think of the goal as one of making the best decisions. Sometimes those bad decisions, where the odds are against you, lead to great results. Often the good ones lead to bad. But better decisions lead to better expectations.</p>
+<blockquote>
+<p><strong>Note</strong>: Poker is one of those games that must be experienced, not merely talked about.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong>: I also think poker is a game that is &quot;empty&quot; without incentive involved.
+Without this, bad decisions do not have any &quot;real&quot; consequences, hence the wackiness of such
+home games.</p>
+</blockquote>
+<h2 id="probabilistic-history"><a class="header" href="#probabilistic-history">Probabilistic History</a></h2>
+<blockquote>
+<p>&quot;The die is cast.&quot;
+<br>
+-- Julius Caesar</p>
+</blockquote>
+<p>In 49BC, Julius Caesar crossed the Rubicon, a small river in northern Italy which
+at the time separated Rome proper from Gaul. In doing so, he initiated a civil
+war that ultimately culminated in the transformation of Roman Republic to Empire, of
+SPQR to Caesar. He was eventually assassinated. The rest is history, as the cliche goes. History seems inevitable. But the future does not.</p>
+<p>Caesar, sans the modern probability theory born from the Age of Reason, seemed to
+understand the gamble, the risk, inherent in his decision. Fortune favors the bold. There was no guarantee that he would win (his chief rival, Pompey, was no militaristic slouch). Historians, ancient or otherwise, could not etch his name as winner into the books before he was a winner. But history makes it appear as if his victory was inevitable, as well as his Shakespearean end.</p>
+<p>History itself is a probabilistic endeavor. Certainly, there is enough evidence that
+shows Caesar to have existed. But the details of even just his individual life,
+however sourced, are also probabilistically compiled by historians and biographers
+who themselves are biased. This is not to say that history is a worthless endeavor.
+On the contrary, history is to be commended (much of it, anyway) for being able to
+piece together the stories of human lives despite the uncertainties and subjective
+interpretations.</p>
+<p>If history is subjective and probabilistic, then what of the future?</p>
+<p>The history and discussions of uncertainty,
+<a href="https://www.amazon.com/Against-Gods-Remarkable-Story-Risk/dp/0471295639/">risk</a>,
+and <a href="https://www.amazon.com/Perfect-Bet-Science-Taking-Gambling-ebook/dp/B017QL8UOS">gambling</a> is enough to fill
+<a href="https://www.amazon.com/Emergence-Probability-Philosophical-Statistical-Probabilistic/dp/0521685575">volume</a> after
+<a href="https://www.amazon.com/Roll-Bones-Gambling-David-Schwartz/dp/1592402089">volume</a>.
+Then there are the
+countless pages (historical or otherwise) in books, papers, journals, blog
+posts, etc., about uncertainty, risk, and predictability. There has been much written about individual games (like
+<a href="https://www.amazon.com/Play-Optimal-Poker-Practical-Theory/dp/1070982725/">poker</a>),
+financial instruments (too many resources) and markets and
+<a href="https://www.amazon.com/Principles-Economics-Betsey-Stevenson/dp/1429237864">economics</a>,
+<a href="https://www.amazon.com/Prisoners-Dilemma-Neumann-Theory-Puzzle/dp/038541580X">game
+theory</a>,
+<a href="https://www.amazon.com/Drunkards-Walk-Randomness-Rules-Lives/dp/0307275175">randomness</a>, rational choices and
+<a href="https://www.amazon.com/Thinking-Fast-and-Slow-audiobook/dp/B005Z9GAJG/">decision making</a>,
+<a href="https://www.amazon.com/Signal-Noise-Many-Predictions-Fail-but-ebook/dp/B007V65R54">predictive models</a>, <a href="https://www.amazon.com/Search-Schrodingers-Cat-Quantum-Physics-ebook/dp/B004JN1CIS">quantum</a>,
+<a href="https://www.amazon.com/Information-History-Theory-Flood-ebook/dp/B004DEPHUC">information theory</a>, and
+<a href="https://www.amazon.com/Chaos-Making-Science-James-Gleick-ebook/dp/B003YL4KOO">chaos</a>.
+Oh, and there are also a seemingly countless number of pages about statistical and machine learning, and predictability of and predictive models for everything from markets to <a href="https://www.amazon.com/Predicting-Unpredictable-Tumultuous-Earthquake-Prediction/dp/0691173303">earthquakes</a>.</p>
+<p>I said history seems inevitable. But the history and future of human endeavour necessarily contains the history of
+fighting uncertainty, of studying the limits of knowledge, of what is knowable. The future is a continuation of an ongoing story.
+The measure of that uncertainty is probability, and I believe that probability is the
+underlying lattice, the network, connecting all of these seemingly disparate fields
+together.</p>
+<p>And I also believe that modern probability theory begins with gambling, that the
+field owes its existence to gamblers' whims.</p>
+<p>As of this writing (May 2021), it seems as if interest in financial markets
+is incapable of being restrained. Certainly, if Bill Hwang of Archegos is
+any indication, big bets and financial gambling are still the norm. And it seems unlikely that this will change.
+Crypto moves to the heartbeat of speculators.
+GameStop is suddenly relevant again, but not for reasons you think;
+at the very least, I can give some credit
+to the whole ordeal for increasing some awareness of short-selling. There is
+constant debate over whether or not Apple, or Amazon, or Tesla, or whomever is
+undervalued or overvalued. Wall Street seems inundated with
+physicists and mathematicians and statisticians trying to develop sophisticated
+predictive models to defeat the orthodoxy of the so-called
+&quot;efficient market&quot;.</p>
+<p>Prediction markets are growing and sports betting is a huge
+industry. Meanwhile, the (video) gaming industry's explosion not only provides these
+firms with constant user data, they have also found a way to monetize even the
+smallest transactions (micropayments). The inclusion of lootboxes seems to
+indicate that the gaming industry understands that the house always wins. We can
+even stretch this to include industries that we normally do not consider.
+Ransomware operators out of Russia certainly have some expected value for each
+victimized firm. But, in fact, so long as they do not infect devices in Mother Russia
+(or the CIS), there seems to be no downside for them.</p>
+<blockquote>
+<p><strong>Note</strong>: The gambling industry has traditionally been referred to as the gaming
+industry. It seems fitting, in a way, for the &quot;new&quot; gaming industry to provide
+the services of the &quot;old&quot; one.</p>
+</blockquote>
+<p>I chose these examples as an illustration that uncertainty is <em>everywhere</em> and that
+that uncertainty is intimately tied with risk, riches, and ruin. I
+would go as far as to argue that uncertainty defines our lives, both individually
+and socially. Probabilities (and by extension statistical approaches and predictive
+models)
+are applied everywhere (and anywhere they seemingly cannot be, there are those
+that try to apply them anyway). And the application for a huge subset of these
+probabilistic models is to make money, directly or indirectly. Probability
+and predictive models are not only relevant for evaluating tomorrow's dollar,
+of course. States and quasi-states gamble lives in war. Laws and legal
+decisions can have profound effects on people's lives.</p>
+<h2 id="subjective-or-objective"><a class="header" href="#subjective-or-objective">Subjective or Objective?</a></h2>
+<p>Imagine we had a weather prediction model that seemed to always tell us that tomorrow
+would bring a 50% chance of rain. What does that mean, exactly? Can we just flip
+a coin? Is the model indicating randomness or the appearance of randomness? Are we
+even certain of that 50%? Is
+the model flawed because of our own limitations? If it did not rain tomorrow,
+would you fault the prediction? What if the model predicted 80% chance of rain
+tomorrow? You cancel tomorrow's plans. It does not rain. Are you upset?</p>
+<p>The idea underlying all of these questions is uncertainty.</p>
+<p>The model is 50% uncertain when it comes to the question of tomorrow's rain.
+The model itself we are uncertain about. We are uncertain (as is the model) if
+the prediction suggests randomness or not.</p>
+<p>Oh, and did you know you can quite literally bet on the weather? From <a href="https://en.wikipedia.org/wiki/Weather_derivative">weather derivatives</a> to <a href="https://betonweather.io/">straight up betting</a>, you now have a chance to win big by correctly
+predicting the weather. Maybe.</p>
+<p>The problem with probability is that it does not give a straightforward answer.
+There seem to be few certainties in life. 50% chance of rain tomorrow is not a
+concrete answer. But it is not a totally unknown quantity either.</p>
+<p>The idea that the realities that underlie our universe are just a calculus of
+probabilities is depressing, even nihilistic. Human beings as a whole like to
+believe that our lives, maybe even the universe, is deterministic.</p>
+<p>One use of the study of probabilities (and risk) is to study the limits of our
+own knowledge. Even the knowledge we have of ourselves is subject to
+uncertainty. Descartes' admonition, &quot;I think, therefore I am&quot;, has not assuaged
+countless people as to the nature of their own realities. The fact that we are,
+does not really prove that we think. We might make a probabilistic judgment,
+but can any person say with 100% certainty that they truly <em>are</em>?</p>
+<p>Philosophy has come up with some clever thought experiments and paradoxes
+to illustrate the uncertainty we have even of ourselves. But I will use
+fictional examples from media instead.</p>
+<p>In the 1982 film, <em>The Thing</em>, a desolate Antarctic station is attacked by an
+unknown organism that can imitate those it kills. Part of the horror is derived
+from the uncertainty of the protagonists of being sure that they are who they really say
+(even think) they are. Similarly, also in 1982, <em>Blade Runner</em> caused us to question the certainty of the protagonist, Deckard, being human.</p>
+<p>And the bigger or deeper or smaller things get, the less certain we are. On a geological
+scale, our lifespans (and the lifespan of humanity) are a blip. On a cosmic scale, our problems seem so infinitesimal as to be effectively
+ignored. Lovecraftian horror, cosmicism, addresses the unknown as indifferent, even
+hostile. Protagonists who discover the arcane secrets of the universe are often
+killed or go insane or otherwise pay for that knowledge.
+There may be some merit to this viewpoint, but without the Great Old Ones. Human beings
+generate more data than at any point in history. And yet, the ranks of the
+unknowable and uncertain continues to grow, despite what advances have been made
+in predictive models. You see, we generate more answers, but we also generate
+more questions. It is unending madness, often with dire consequences.</p>
+<h2 id="on-necessity"><a class="header" href="#on-necessity">On Necessity</a></h2>
+<p>You might be wondering: with all of the material out there, is this really necessary?</p>
+<p>The answer is no.</p>
+<p>In actuality, this is as much (and probably more) for me as it is for of you. This is more of a personal
+project that is made public. I find that teaching things (not to mention actually doing things) is one of the ways I best cement what I have learned. And it is public so in a way I am accountable.</p>
+<blockquote>
+<p><strong>Note</strong>: Speaking of accountability, I am open to suggestions, corrections, and
+discussions.</p>
+</blockquote>
+<h2 id="on-games"><a class="header" href="#on-games">On Games</a></h2>
+<p>So, we are going to use &quot;games of chance&quot; to try to illuminate some quite curious
+properties of real life. These games of chance are themselves often misunderstood,
+including by a class of people who claim to be able to make money from them
+(they're otherwise known as gamblers). From simple games of chance, we expand
+into the nebulous realm of probability theory. And from there? So many
+possibilities.</p>
+<p>Why do we start with games? And why games of chance?</p>
+<p>They are simple enough to begin with and apparently complex enough to continue.</p>
+<p>Casino games are fairly obvious starting points. But games of increasing sophistication are being played and beaten by
+machines. Blackjack was one of the first games to be &quot;solved&quot; using computers.
+The earliest mathematical blackjack pioneers utilized these nascent processors
+to figure out their edges and eventually lead to systems (IE card counting).
+Huge money was and is still made by professional blackjack players. Nowadays,
+even poker (at least in certain guises) is &quot;solved&quot;, with DeepStack beating
+pros heads-up and allegations that some online poker sites are overrun with
+bots. Naturally, we also should not forget the deep learners like AlphaStar.</p>
+<p>The ecosystem of video games is also likely awash with data cowboys and
+cowgirls and predictive models, mining and analyzing every probabilistic
+scenario, from ranking algorithms to lootboxes and microtransaction systems.
+These companies have turned their triple-A games into not only mass data
+harvesters, but veritable casinos, gobbling up microtransactions like the vig.</p>
+<p>Beyond these &quot;toys&quot;, games have evolved to include situations that can be
+modelled in terms of strategies and payoffs. Framing a situation in the
+&quot;language&quot; of games can make them easier to understand and study. For example,
+early game theory was intimately linked with the nuclear dilemma and MAD
+(memorably, the only winning move is not to play).</p>
+<h2 id="on-bets"><a class="header" href="#on-bets">On Bets</a></h2>
+<p>Why betting and gambling?</p>
+<p>I do not know why, but I feel the need to point out that (most) gambling is just
+that: gambling. At least, gambling in the sense of going to a casino to play a
+game without an edge (no matter your intention is just fun).</p>
+<p>No, when I refer to a gambler from now on, I refer to the professional that seeks
+an edge or positive expectation. Our Gambler (with a capital G) is not the sunny
+Vegas tourist or rich businessman looking for a night out.</p>
+<p>Edward Thorp sums it up nicely:
+&gt;The central problem for gamblers is to find positive expectation bets. But the gambler
+also needs to know how to manage his money, i.e., how much to bet. In the stock
+market (more inclusively, the securities markets) the problem is similar but more complex. The gambler, who is now an &quot;investor&quot;, looks for &quot;excess risk adjusted return&quot;.</p>
+<p>It is not just the idea of winning (or losing) money. It is the idea of
+thinking in terms of &quot;bets&quot; (or expectation or, at the very least,
+probabilities), to start thinking in terms of the &quot;best&quot; decision, as opposed
+to focusing on solely the results.</p>
+<p>This is <em>not</em>, of course, to say that this is the only way to think of our
+decisions but, I feel, it is one of the more misunderstood. Human beings (myself
+included) are incredibly wrong when it comes to probability. Our intuitions are
+usually horribly incorrect, and at the very least biased.</p>
+<p>Finally, I adhere to the saying: &quot;Put your money where your mouth is.&quot; If you
+are confident enough in a prediction, put your money on it. Or at least, act
+like you will.</p>
+<h2 id="the-road-to-paradise-is-paved-in-ruin"><a class="header" href="#the-road-to-paradise-is-paved-in-ruin">The Road to Paradise is Paved in Ruin</a></h2>
+<p>They say all roads lead to Rome. <em>via Romana</em> is impressive by every measure,
+an ancient network of the so-called &quot;civilized age&quot;. According to <a href="https://en.wikipedia.org/wiki/Roman_roads">Wikipedia</a>:</p>
+<blockquote>
+<p>At the peak of Rome's development, no fewer than 29 great military highways
+radiated from the capital, and the late Empire's 113 provinces were
+interconnected by 372 great roads.</p>
+</blockquote>
+<p>Like I said, impressive.</p>
+<p>All roads led to Rome, yes, but the glory of empire was paved with conquest,
+ruined lives (whatever the reasons). According to legend, in its defeat,
+Carthage was sacked and salted over and its citizens enslaved. But I speak not
+only of military conquest, but also commercial. How many became exceedingly rich
+and how many fortunes were lost in the glory days of Rome? Rome itself
+eventually collapsed; the roads led their enemies right to them.</p>
+<p>The professional gambler faces the same destitute road system, but in a weird
+twist: all roads lead to riches, but so many chasing the dream are ruined. The
+streets to riches are paved by the broken gamblers left in the wake of its
+construction. If someone gets rich, another certainly gets poor.</p>
+<h2 id="on-richness-and-poorness-and-limitations"><a class="header" href="#on-richness-and-poorness-and-limitations">On Richness and Poorness and Limitations</a></h2>
+<p>I want to end this introduction with a few thoughts on being rewarded for risky maneuvers.</p>
+<p>In 2003, an aptly-named protagonist, everyman Chris Moneymaker, parlayed an online $86
+satellite tournament win into a $2,500,000 grand prize at the World Series of
+Poker. The result? The popularity of poker exploded, particularly in the guise
+of its most elegant variant, Texas Hold 'em. Ordinary players became rich.
+Poker professionals became celebrities, at least for a certain generation of
+people.</p>
+<p>I have no idea what the actual numbers are, but I would like to merely speak on
+the nature of success in the fight against uncertainty. A lot of skilled and probably
+perfectly nice people became millionaires through poker. But there was also
+probably a subset of players who got there because they &quot;ran good&quot;. There are
+also those that got to that place playing in seas full of fishes (and whales).
+There is nothing inherently &quot;wrong&quot; with this, of course (our Gambler seeks an edge and positive expectation). Finally, we should also remember
+the countless people that did not &quot;make it&quot;, despite their own hard work. When
+a player gets rich, someone else gets poor.</p>
+<p>Poker players, and other assorted gamblers, are also not expected to think like other
+people. This does not mean they are smarter (or dumber), but that professional gamblers
+have a unique paradigm on life. Poker players (at least, successful ones) like to stress
+the lifestyle, the financial independence, of being a poker player: no bosses, no
+punching in and out or pretending to have work to do; the jetsetting glamor. But poker
+players (even the skilled ones) neglect to mention the variance, the potential ruin.
+They cannot understand that an almost certain guarantee of a salary of $70,000 per year helps
+the non-gamblers sleep, instead of wondering nightly &quot;what if?&quot;.</p>
+<p>This is fine. Our system (for better or worse) necessarily needs the risk taker (the entrepreneur, the venture capitalist, the angel investor, the businessman, the Gambler) as much as it needs the wage earners
+who turn the risk takers' visions into the finished goods or services.</p>
+<p>Gamblers would not be known as gamblers if they could not tolerate the gamble.</p>
+<h2 id="some-thoughtful-experiments"><a class="header" href="#some-thoughtful-experiments">Some Thoughtful Experiments</a></h2>
+<p>Here are some questions to think about. I do not provide the answers yet, but these
+are the types of questions I would like to ask and answer eventually. You are obviously
+free to (and encouraged to) seek the answers out yourself.</p>
+<blockquote>
+<p>You are at a small party. It looks like maybe two dozen or so people.
+It is rather dull, so to spice things up, your party companion offers you a wager: even
+money that two people at the party share the same birthday. Do you take the bet?</p>
+</blockquote>
+<blockquote>
+<p>You are a contestant in a game show. The host shows you 3 doors. Behind 2 of
+them are goats, behind the third a brand new sports car, your potential prize. You are asked to pick a
+door. The host, who knows what is behind each door, shows you a goat from behind
+one of the unopened doors. The host then offers you the option of switching doors.
+What do you do?</p>
+</blockquote>
+<blockquote>
+<p>You are given a &quot;coin&quot;. You are offered $100 every time it is heads, you lose
+$100 every time it is tails. The bookie is generous, he will not take a fee.
+He also assures you that the coin is fair. Can you determine if it is? If so,
+how many flips before you can determine, with some level of certainty, its fairness?</p>
+</blockquote>
+<h2 id="the-hidden-costs"><a class="header" href="#the-hidden-costs">The Hidden Costs</a></h2>
+<p>The adage in the tech industry goes: if you aren't
+paying for it, you're the product (I say this as I simultaneously publish to Github). There is a hidden cost somewhere to everything. Often that cost isn't direct monetary value. But always take note of the obvious ones. In life, as in gambling, the take
+makes even noticeable edges disappear. Once the fees, transaction costs, commissions, rake, take, cut, or vig have all been taken into account (not to mention inflation, taxes,
+opportunity costs) you could find yourself in the red.</p>
+<h2 id="final-remarks"><a class="header" href="#final-remarks">Final Remarks</a></h2>
+<p>I want to emphasize once more: thinking in terms of expected value is not the only
+way to make decisions. It is not even the only influence. I make only one note: our
+focus here is predominantly on a &quot;rational&quot; actor (or one seeking to be rational), whose
+primary goal is the maximization of return (or minimization of loss) in terms of
+expectation. Nowhere do I pretend that human beings are rational nor do I believe
+thinking this way is the only way.</p>
+<p>A final note on the purpose of this blog by describing what it is not.</p>
+<p>It is not:</p>
+<ul>
+<li>Code documentation (see <a href="https://github.com/0xA2A3/montecarlo/wiki">wiki</a> for
+that);</li>
+<li>Meant to be a full-blown course in anything.</li>
+</ul>
+<p>That's basically it.</p>
+<p>But I intend the blog to be a more general treatment (with the necessary math
+and code).</p>
+<p>I find a lot of probability theory resources to be far too technical and
+mathematical (I am not a math major) or far too general (which makes them fun
+to read, but by their nature obscures by providing few actual examples or too
+few illustrations). So instead of just talking about what multiple dice rolls
+look like, we can actually do it.</p>
+<p>And a final, final note on resources: unfortunately, because of the volume of
+resources I have gone through over the past few years, it is difficult for me
+to list all of them. In the course of writing anything, if I find or know of a
+relevant resource, it will be mentioned. The resources linked on this page serve as good starting points. Otherwise, please look at the
+<a href="https://0xa2a3.github.io/resources">resources</a> page.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="about.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="about.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
