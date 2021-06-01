@@ -13,7 +13,7 @@ before_script:
   - cargo install-update -a
 
 script:
-  - ~/Downloads/mdbook build /home/fade/stateofplay && ~/Downloads/mdbook test /home/fade/stateofplay
+  - /home/fade/Downloads/mdbook build /home/fade/stateofplay && /home/fade/Downloads/mdbook test /home/fade/stateofplay
 
 deploy:
   provider: pages
