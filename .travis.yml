@@ -1,7 +1,6 @@
 language: rust
 sudo: false
 
-
 cache:
   - cargo
 
@@ -14,7 +13,7 @@ before_script:
   - cargo install-update -a
 
 script:
-  - mdbook build /home/fade/stateofplay && mdbook test /home/fade/stateofplay
+  - ~/Downloads/mdbook build /home/fade/stateofplay && ~/Downloads/mdbook test /home/fade/stateofplay
 
 deploy:
   provider: pages
